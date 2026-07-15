@@ -1,0 +1,459 @@
+{
+  "name": "Lead capture and send email + append row",
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "documentId": {
+          "__rl": true,
+          "value": "1do8Z-kxxtPqPWKcZ1WdBtytSo64rWDPfyftnK0TCIjs",
+          "mode": "list",
+          "cachedResultName": "Leads",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1do8Z-kxxtPqPWKcZ1WdBtytSo64rWDPfyftnK0TCIjs/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1do8Z-kxxtPqPWKcZ1WdBtytSo64rWDPfyftnK0TCIjs/edit#gid=0"
+        },
+        "event": "rowAdded",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTrigger",
+      "typeVersion": 1,
+      "position": [
+        -288,
+        -160
+      ],
+      "id": "d22c1aeb-2398-4e06-819e-5abe7adce585",
+      "name": "Google Sheets Trigger",
+      "credentials": {
+        "googleSheetsTriggerOAuth2Api": {
+          "id": "H96AVJvHYAltPVB5",
+          "name": "Google Sheets Trigger OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "6e38a1e1-3708-40be-aa2c-d251e022659b",
+              "leftValue": "={{ $json['Company Size'] }}",
+              "rightValue": 50,
+              "operator": {
+                "type": "number",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -112,
+        -160
+      ],
+      "id": "52b00bdd-e678-4eb8-8179-3544cf032ad9",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1do8Z-kxxtPqPWKcZ1WdBtytSo64rWDPfyftnK0TCIjs",
+          "mode": "list",
+          "cachedResultName": "Leads",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1do8Z-kxxtPqPWKcZ1WdBtytSo64rWDPfyftnK0TCIjs/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1584269342,
+          "mode": "list",
+          "cachedResultName": "Not Used",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1do8Z-kxxtPqPWKcZ1WdBtytSo64rWDPfyftnK0TCIjs/edit#gid=1584269342"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "First Name": "={{ $json['First Name'] }}",
+            "Last Name": "={{ $json['Last Name'] }}",
+            "Company": "={{ $json.Company }}",
+            "Company Size": "={{ $json['Company Size'] }}",
+            "Address": "={{ $json.Address }}",
+            "City": "={{ $json.City }}",
+            "Country": "={{ $json.Country }}",
+            "State": "={{ $json.State }}",
+            "Zipcode": "={{ $json.Zipcode }}",
+            "Phone 1 ": "={{ $json['Phone 1 '] }}",
+            "Phone 2": "={{ $json['Phone 2'] }}",
+            "Email": "={{ $json.Email }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "First Name",
+              "displayName": "First Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Last Name",
+              "displayName": "Last Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Company",
+              "displayName": "Company",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Company Size",
+              "displayName": "Company Size",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Address",
+              "displayName": "Address",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "City",
+              "displayName": "City",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Country",
+              "displayName": "Country",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "State",
+              "displayName": "State",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Zipcode",
+              "displayName": "Zipcode",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Phone 1 ",
+              "displayName": "Phone 1 ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Phone 2",
+              "displayName": "Phone 2",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        288,
+        176
+      ],
+      "id": "0f33c5e6-5157-4bca-9587-de32d6ab1dc8",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "NsYutnwKRtiVnP4j",
+          "name": "Google Sheets OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        544,
+        -32
+      ],
+      "id": "ddc9dd15-b826-45b1-ba4f-4f671da096ec",
+      "name": "Wait",
+      "webhookId": "321d4160-bb52-4bff-ace2-a5f2d86ef97c"
+    },
+    {
+      "parameters": {
+        "batchSize": 5,
+        "options": {
+          "reset": false
+        }
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        288,
+        -128
+      ],
+      "id": "10da6073-893a-4d1a-ada2-9f6fe31abbb4",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "fieldsToSummarize": {
+          "values": [
+            {
+              "field": "Email"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.summarize",
+      "typeVersion": 1.1,
+      "position": [
+        496,
+        -224
+      ],
+      "id": "6c22cd2d-bc5c-4fdc-af14-36236b10c260",
+      "name": "Summarize"
+    },
+    {
+      "parameters": {
+        "sendTo": "javiyaankit6@gmail.com",
+        "subject": "Email sent Detail ",
+        "emailType": "text",
+        "message": "Hello Admin, All email is sent successfully.",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        688,
+        -288
+      ],
+      "id": "00f22d69-cd6c-4ea1-8bf4-c9c4020431f5",
+      "name": "Final Mail to Admin",
+      "webhookId": "ea0c1f31-ef29-43b6-a76a-a14eb100f0ff",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "RVyzOsVubS0DE4lE",
+          "name": "Gmail OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "=ankitjaviya2@gmail.com",
+        "subject": "Welcome to AC Jain Developers ",
+        "emailType": "text",
+        "message": "=Hi admin,\n\nwe received new enquiry. please find below details:\n\nName:  {{ $('Google Sheets Trigger').item.json['First Name'] }} {{ $('Google Sheets Trigger').item.json['Last Name'] }}\n\nPhone: {{ $('Google Sheets Trigger').item.json['Phone 1 '] }} , {{ $('Google Sheets Trigger').item.json['Phone 2'] }}\n\nCity: {{ $('Google Sheets Trigger').item.json.City }}\n\nCompany Name & Size: {{ $('Google Sheets Trigger').item.json.Company }} - {{ $('Google Sheets Trigger').item.json['Company Size'] }}\n\nAddress: {{ $('Google Sheets Trigger').item.json.Address }}, {{ $('Google Sheets Trigger').item.json.City }}, {{ $('Google Sheets Trigger').item.json.Country }}, {{ $('Google Sheets Trigger').item.json.State }}, {{ $('Google Sheets Trigger').item.json.Zipcode }}\n\nThanks! Reaching out earlier.\nHave a nice day!",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        768,
+        -80
+      ],
+      "id": "7066a9e6-37d5-49fa-939a-0a1538750615",
+      "name": "Send mail to customer",
+      "webhookId": "c666abeb-a811-496e-b4a5-bcef2026261d",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "RVyzOsVubS0DE4lE",
+          "name": "Gmail OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        64,
+        16
+      ],
+      "id": "b0d7afa6-6960-4902-872e-2c97c6c4830d",
+      "name": "Wait1",
+      "webhookId": "8378e053-c6f4-4476-ad6e-6634fb2c5c0d"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Google Sheets Trigger": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Send mail to customer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [
+          {
+            "node": "Summarize",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Summarize": {
+      "main": [
+        [
+          {
+            "node": "Final Mail to Admin",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send mail to customer": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait1": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "9dbcca3f-5f8d-47b5-bc33-783494215974",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "04b375e8c7dcb47eaad4980e988692640e183b01702c5f53fc19a16889320711"
+  },
+  "nodeGroups": [],
+  "id": "scIB3dsFpdwh4qj2",
+  "tags": []
+}
